@@ -27,6 +27,9 @@ require_once __DIR__.'/Country.php';
 require_once __DIR__.'/SuccessStories.php';
 require_once __DIR__.'/Review.php';
 require_once __DIR__.'/Service.php';
+require_once __DIR__.'/Roles.php';
+require_once __DIR__.'/User.php';
+require_once __DIR__.'/Student.php';
 
 
 

@@ -22,8 +22,10 @@ class ServiceSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service_name' => 'required|string|max:255',
+            'service_category_id' => 'required|exists:service_categories,id',
+            'service_description' => 'required|string|max:255',
             'service_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:100',
+            'rank' => 'required|integer|min:1',
         ];
     }
 }

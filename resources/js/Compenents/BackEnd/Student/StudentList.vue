@@ -8,24 +8,24 @@ const page = usePage();
 
 // Table headers
 const headers = [
-    { text: "Id", value: "id" },
-    { text: "Image", value: "service_image" },
-    { text: "Service Category", value: "service_category.service_name" },
-    { text: "Service Description", value: "service_description" },
-    { text: "Rank", value: "rank" },
+    { text: "ID", value: "id" },
+    { text: "Name", value: "name" },
+    { text: "Email", value: "email" },
+    { text: "Phone", value: "phone" },
+    { text: "Activity", value: "is_active" },
     { text: "Action", value: "action" },
 ];
 
 // Users and search fields
-const items = ref(page.props.services || []);
+const items = ref(page.props.students);
 
-const searchField = ref(["id", "name"]);
+const searchField = ref(["id", "name", "email"]);
 const searchItem = ref();
 
 // Delete User
-function deleteService(id) {
-    if (confirm("Are you sure you want to delete this Service?")) {
-        router.get(`/admin/sercices/${id}`);
+function deleteStudent(id) {
+    if (confirm("Are you sure you want to delete this Student?")) {
+        router.get(`/admin/student/${id}`);
     }
 }
 
@@ -38,7 +38,7 @@ if (page.props.flash.status === false) {
 </script>
 
 <template>
-    <h3 class="fw-bold mb-4">Service List</h3>
+    <h3 class="fw-bold mb-4">Student List</h3>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <!-- Search Input -->
@@ -50,11 +50,8 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link
-            :href="`/admin/service-save-page?service_id=${0}`"
-            class="btn btn-success"
-        >
-            Add Service
+        <Link :href="`/admin/student-save-page?student_id=${0}`" class="btn btn-success">
+            Add Student
         </Link>
     </div>
 
@@ -68,25 +65,16 @@ if (page.props.flash.status === false) {
         :rows-per-page="5"
         table-class="table table-striped table-bordered"
     >
-        <template #item-service_image="{ service_image }">
-            <img
-                :src="`/storage/service/${service_image}`"
-                style="width: 50px; height: 50px"
-            />
-        </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
                 <Link
-                    :href="`/admin/service-save-page?service_id=${id}`"
+                    :href="`/admin/student-save-page?student_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button
-                    @click="deleteService(id)"
-                    class="btn btn-sm btn-danger"
-                >
+                <button @click="deleteStudent(id)" class="btn btn-sm btn-danger">
                     Delete
                 </button>
             </div>
@@ -95,3 +83,4 @@ if (page.props.flash.status === false) {
 </template>
 
 <style scoped></style>
+

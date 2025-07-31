@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use Inertia\Inertia;
 use App\Models\Country;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -12,6 +13,12 @@ class PageController extends Controller
     //Dashboard page
     public function dashboard(){
         return Inertia::render('BackEnd/DashBoardPage');
+    }
+
+    //profile
+    public function profile(){
+        $user=Auth::user();
+        return Inertia::render('ProfilePage',['user'=>$user]);
     }
 
     //student dashboard page

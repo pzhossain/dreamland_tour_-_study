@@ -8,7 +8,8 @@ const page = usePage();
 
 // Table headers
 const headers = [
-    { text: "Service Name", value: "service_name" },
+    { text: "Image", value: "image" ,sortable: true},
+    { text: "Service Name", value: "service_name" ,sortable: true},
     { text: "Service Title", value: "service_title" },
     { text: "Action", value: "action" },
 ];
@@ -65,6 +66,11 @@ if (page.props.flash.status === false) {
         :rows-per-page="5"
         table-class="table table-striped table-bordered"
     >
+        <template #item-image="{ image }">
+           <img :src="`/storage/serviceCategory/${image}`" class="img-thumbnail border border-dark rounded"  style="width: 50px; height: 50px">
+        </template>
+
+        <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
                 <Link

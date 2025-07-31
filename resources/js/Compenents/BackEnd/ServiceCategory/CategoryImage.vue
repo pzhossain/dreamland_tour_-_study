@@ -2,14 +2,14 @@
 import { ref } from "vue";
 
 const props = defineProps({
-    serviceImage: {
+    categoryImage: {
         type: [String, File],
         default: null,
     },
 });
 
-const currentImage = props.serviceImage
-    ? `/storage/service/${props.serviceImage}`
+const currentImage = props.categoryImage
+    ? `/storage/serviceCategory/${props.categoryImage}`
     : null;
 const preview = ref(currentImage);
 const emit = defineEmits(["image"]);
@@ -30,7 +30,7 @@ const clearImage = () => {
   <div class="position-relative d-inline-block">
     <label for="image" class="d-block">
       <img
-        :src="preview ? preview : serviceImage ? `/storage/service/${serviceImage}` : 'placeholder.png'"
+        :src="preview ? preview : categoryImage ? `/storage/serviceCategory/${categoryImage}` : 'placeholder.png'"
         class="img-thumbnail border border-dark rounded w-100"
         style="width: 100px; height: 100px; object-fit: cover;"
         alt="Country Image"

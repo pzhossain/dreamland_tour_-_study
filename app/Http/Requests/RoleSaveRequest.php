@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserSaveRequest extends FormRequest
+class RoleSaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,7 @@ class UserSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $this->route('id'),
-            'password' => 'required|string|min:8',
-            'phone' => 'required|string',
+           'roleName' => 'required|unique:roles,name,' . $this->route('id')
         ];
     }
 }
