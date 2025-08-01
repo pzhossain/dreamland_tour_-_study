@@ -7,7 +7,7 @@ const toaster = createToaster({});
 const page = usePage();
 const user_id = new URLSearchParams(window.location.search).get("user_id");
 const user = page.props.users;
-const errors = computed(() => page.props.flash.errors || {});
+const errors = computed(() => page.props.errors || {});
 
 const form = useForm({
     user_id: user_id,

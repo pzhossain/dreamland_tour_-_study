@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Booking;
 use App\Models\Country;
+use App\Models\Services;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,13 +20,16 @@ class PageController extends Controller
 
     //profile
     public function profile(){
-        $user=Auth::user();
-        return Inertia::render('ProfilePage',['user'=>$user]);
+        $userId=Auth::user()->id;
+        $profile=User::find($userId);
+        return Inertia::render('ProfilePage',['profile'=>$profile]);
     }
 
     //student dashboard page
     public function studentDashboard(){
-        return Inertia::render('FrontEnd/StudentDashBoardPage');
+        $userId=Auth::check()?Auth::user()->id:0;
+        $bookings=Booking::where('user_id',$userId)->get();
+        return Inertia::render('FrontEnd/StudentDashBoardPage',['bookings'=>$bookings]);
     }
 
     //login page
@@ -79,7 +85,8 @@ class PageController extends Controller
 
     //services
     public function services(){
-        return Inertia::render('FrontEnd/ServicesPage');
+        $services=Services::all();
+        return Inertia::render('FrontEnd/ServicesPage',['services'=>$services]);
     }
 
     //guides

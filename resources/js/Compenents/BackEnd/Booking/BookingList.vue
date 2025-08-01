@@ -52,7 +52,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link :href="`/admin/booking-save-page?booking_id=${0}`" class="btn btn-success">
+        <Link v-if="page.props.user.can['booking-save']" :href="`/admin/booking-save-page?booking_id=${0}`" class="btn btn-success">
             Add Booking
         </Link>
     </div>
@@ -70,13 +70,13 @@ if (page.props.flash.status === false) {
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['booking-update']"
                     :href="`/admin/booking-save-page?booking_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button @click="deleteBooking(id)" class="btn btn-sm btn-danger">
+                <button v-if="page.props.user.can['booking-delete']" @click="deleteBooking(id)" class="btn btn-sm btn-danger">
                     Delete
                 </button>
             </div>

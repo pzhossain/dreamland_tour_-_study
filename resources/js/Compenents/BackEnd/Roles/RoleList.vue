@@ -23,8 +23,8 @@ if(page.props.flash.status === true){
     <!-- Heading -->
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-4">
       <h2 class="h3 fw-bold text-dark mb-3 mb-sm-0">Role & Permissions</h2>
-      <div v-if="page.props.user.can['create-role']">
-        <Link
+      <div >
+        <Link v-if="page.props.user.can['create-role']"
           :href="`/admin/role-save-page?role_id=0`"
           class="btn btn-success btn-sm shadow"
         >
@@ -60,15 +60,15 @@ if(page.props.flash.status === true){
               </div>
             </td>
             <td class="d-flex gap-2">
-              <Link
-                v-if="page.props.user.can['update-role']"
+              <Link v-if="page.props.user.can['update-role']"
+
                 :href="`/admin/role-save-page?role_id=${role.id}`"
                 class="btn btn-primary btn-sm"
               >
                 Edit
               </Link>
-              <button
-                v-if="page.props.user.can['delete-role']"
+              <button v-if="page.props.user.can['delete-role']"
+
                 @click="deleteRole(role.id)"
                 class="btn btn-danger btn-sm"
               >

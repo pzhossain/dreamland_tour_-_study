@@ -8,21 +8,27 @@ const page = usePage();
 
 // Table headers
 const headers = [
-    { text: "image", value: "image" },
-    { text: "video", value: "video" },
+    { text: "Id", value: "id" },
+    { text: "Page Name", value: "name" },
+    { text: "Page Title", value: "title" },
+    { text: "Page Image", value: "image" },
+    { text: "Page Description", value: "page_description" },
+    { text: "Meta Title", value: "meta_title" },
+    { text: "Meta Description", value: "meta_description" },
+    { text: "Rank", value: "rank" },
     { text: "Action", value: "action" },
 ];
 
 // Users and search fields
-const items = ref(page.props.successStories || []);
+const items = ref(page.props.pageContents || []);
 
 const searchField = ref(["id", "name"]);
 const searchItem = ref();
 
 // Delete User
-function deleteSuccessStory(id) {
-    if (confirm("Are you sure you want to delete this Success Story?")) {
-        router.get(`/admin/success-stories/${id}`);
+function deletePageContent(id) {
+    if (confirm("Are you sure you want to delete this Page Content?")) {
+        router.get(`/admin/page-content/${id}`);
     }
 }
 
@@ -35,7 +41,7 @@ if (page.props.flash.status === false) {
 </script>
 
 <template>
-    <h3 class="fw-bold mb-4">Success Stories List</h3>
+    <h3 class="fw-bold mb-4">Page Content List</h3>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <!-- Search Input -->
@@ -47,11 +53,11 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link v-if="page.props.user.can['success-stories-save']"
-            :href="`/admin/success-stories-save-page?success_id=${0}`"
+        <Link v-if="page.props.user.can['page-content-save']"
+            :href="`/admin/page-content-save-page?page_content_id=${0}`"
             class="btn btn-success"
         >
-            Add Success Story
+            Add Page Content
         </Link>
     </div>
 
@@ -67,21 +73,25 @@ if (page.props.flash.status === false) {
     >
         <template #item-image="{ image }">
             <img
-                :src="`/storage/success/${image}`"
+                :src="`/storage/pageContent/${image}`"
                 style="width: 50px; height: 50px"
             />
+        </template>
+
+          <template #item-description="{ description }">
+            <span v-html="service_description"></span>
         </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link v-if="page.props.user.can['success-stories-update']"
-                    :href="`/admin/success-stories-save-page?success_id=${id}`"
+                <Link v-if="page.props.user.can['page-content-save']"
+                    :href="`/admin/page-content-save-page?page_content_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button v-if="page.props.user.can['success-stories-delete']"
-                    @click="deleteSuccessStory(id)"
+                <button v-if="page.props.user.can['page-content-delete']"
+                    @click="deletePageContent(id)"
                     class="btn btn-sm btn-danger"
                 >
                     Delete

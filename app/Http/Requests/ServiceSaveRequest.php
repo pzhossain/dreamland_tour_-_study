@@ -23,9 +23,8 @@ class ServiceSaveRequest extends FormRequest
     {
         return [
             'service_category_id' => 'required|exists:service_categories,id',
-            'service_description' => 'required|string|max:255',
-            'service_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:100',
-            'rank' => 'required|integer|min:1',
+            'service_image' => $this->hasFile('service_image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
+            'rank' => 'required|integer|min:1|unique:services,rank,' . $this->route('id'),
         ];
     }
 }

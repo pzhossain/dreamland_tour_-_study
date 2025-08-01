@@ -11,6 +11,10 @@ import NProgress from 'nprogress'
 
 
 
+
+
+
+
 createInertiaApp({
   resolve: name => {
     const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })

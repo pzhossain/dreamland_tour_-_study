@@ -44,7 +44,7 @@ class ServiceController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
 
             // Store the image in storage/app/public/service/
-            $image->storeAs('service', $imageName, 'public');
+            $image->storeAs('service', $imageName);
 
             $data['service_image'] = $imageName;
         }
@@ -79,7 +79,7 @@ class ServiceController extends Controller
             // Store new image
             $image = $request->file('service_image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->storeAs('service', $imageName, 'public');
+            $image->storeAs('service', $imageName);
 
             $data['service_image'] = $imageName;
         }

@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_category_id');
-            $table->foreign('service_category_id')->references('id')->on('service_categories')
-            ->restrictOnDelete()
-            ->cascadeOnUpdate();
-            $table->longText('service_description');
-            $table->string('service_image');
+            $table->string('page_name');
+            $table->string('title');
+            $table->longText('description');
+            $table->string('image');
+            $table->string('meta_title');
+            $table->string('meta_description');
             $table->integer('rank')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('pages');
     }
 };

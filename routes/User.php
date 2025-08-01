@@ -10,8 +10,8 @@ use App\Http\Middleware\TokenVerificationMiddleware;
 //users
 Route::middleware(TokenVerificationMiddleware::class)->prefix('admin')->group(function () {
     Route::get('/users', [UserController::class, 'listUser'])
-    ->name('list-user');
-    // ->middleware('permission:list-user');
+    ->name('list-user')
+    ->middleware('permission:list-user');
 
 Route::get('/user-save-page', [UserController::class, 'userSavePage'])
     ->name('user-save-page')

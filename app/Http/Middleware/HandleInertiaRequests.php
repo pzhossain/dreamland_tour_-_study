@@ -46,8 +46,7 @@ class HandleInertiaRequests extends Middleware
         return [
             'user' => [
                 'login' => Auth::check() ? true : false,
-                'user_role' => Auth::check() ? Auth::user()->user_role : null,
-                'user_id' => Auth::check() ? Auth::user()->id : null,
+                'authUser' => Auth::check() ? Auth::user():'',
                 'can' => $can
             ],
             'flash' => [

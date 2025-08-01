@@ -7,10 +7,10 @@ use App\Http\Controllers\BackEnd\RoleController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 
 //roles
-Route::middleware(TokenVerificationMiddleware::class)->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/roles', [RoleController::class, 'listRole'])
-        ->name('list-role');
-        // ->middleware('permission:list-role');
+        ->name('list-role')
+        ->middleware('permission:list-role');
 
     Route::get('/role-save-page', [RoleController::class, 'roleSavePage'])
         ->name('role-save-page')

@@ -48,7 +48,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link
+        <Link v-if="page.props.user.can['save-service-category']"
             :href="`/admin/service-category-save-page?service_category_id=${0}`"
             class="btn btn-success"
         >
@@ -73,13 +73,13 @@ if (page.props.flash.status === false) {
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['update-service-category']"
                     :href="`/admin/service-category-save-page?service_category_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button
+                <button v-if="page.props.user.can['delete-service-catgegory']"
                     @click="deleteServiceCategory(id)"
                     class="btn btn-sm btn-danger"
                 >

@@ -8,7 +8,7 @@ const page = usePage();
 const errors = computed(() => page.props.errors || {});
 
 const form = useForm({
-    user_id: page.props.user.user_id,
+    user_id: page.props.user.authUser.id,
     name: "",
     email: "",
     bd_phone: "",
@@ -27,12 +27,12 @@ const toggleDropdown = () => {
 
 const selectCountry = (country) => {
     selectedCountry.value = country;
-    form.prefferred_country = country.countryname;  
+    form.prefferred_country = country.country_name;
     isOpen.value = false;
 };
 
 function submitForm() {
-    form.post("/admin/booking", {
+    form.post("/student/booking", {
         preserveScroll: true,
         onSuccess: () => {
             if (page.props.flash.status == false) {
@@ -2520,7 +2520,7 @@ function submitForm() {
     </div>
     <!-- Gallery End -->
 
-     <!-- Tour Booking Start -->
+    <!-- Tour Booking Start -->
     <div class="container-fluid booking py-5">
         <div class="container py-5">
             <div class="row g-5 align-items-center">
@@ -2727,16 +2727,10 @@ function submitForm() {
                                         </ul>
                                     </div>
 
-                                    <!-- Hidden input -->
-                                    <input
-                                        type="hidden"
-                                        v-model="form.prefferred_country"
-                                    />
-
                                     <!-- Error -->
                                     <div
                                         v-if="errors.prefferred_country"
-                                        class="text-danger mt-1"
+                                        class="text-white mt-1"
                                     >
                                         {{ errors.prefferred_country[0] }}
                                     </div>

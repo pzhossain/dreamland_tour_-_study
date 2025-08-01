@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceCategorySaveRequest extends FormRequest
+class PageContentSaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,12 @@ class ServiceCategorySaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service_name' => 'required|string|max:255',
+            'page_name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'rank' => 'required|integer|unique:pages,rank,' . $this->route('id'),
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
             'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
         ];
     }

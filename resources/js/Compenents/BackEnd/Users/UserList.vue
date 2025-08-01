@@ -50,7 +50,7 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link :href="`/admin/user-save-page?user_id=${0}`" class="btn btn-success">
+        <Link  v-if="page.props.user.can['create-user']" :href="`/admin/user-save-page?user_id=${0}`" class="btn btn-success">
             Add User
         </Link>
     </div>
@@ -73,13 +73,13 @@ if (page.props.flash.status === false) {
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link
+                <Link v-if="page.props.user.can['update-user']"
                     :href="`/admin/user-save-page?user_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button @click="deleteUser(id)" class="btn btn-sm btn-danger">
+                <button v-if="page.props.user.can['delete-user']" @click="deleteUser(id)" class="btn btn-sm btn-danger">
                     Delete
                 </button>
             </div>
