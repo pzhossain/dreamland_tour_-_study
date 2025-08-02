@@ -21,6 +21,7 @@ Route::middleware([TokenVerificationMiddleware::class])->group(function () {
 Route::middleware([TokenVerificationMiddleware::class])->prefix('student')->group(function () {
     //student booking
     Route::post('/booking', [BookingController::class, 'bookingSave'])->name('booking-save');
+    //student profile update
     Route::post('/profile-update/{id}',[ProfileController::class,'updateProfile'])->name('profile-update');
 });
 
@@ -43,6 +44,7 @@ Route::middleware([TokenVerificationMiddleware::class, AdminMiddleware::class])-
     require_once __DIR__ . '/User.php';
     require_once __DIR__ . '/Student.php';
     require_once __DIR__ . '/PageContent.php';
+    require_once __DIR__ . '/University.php';
 });
 
 

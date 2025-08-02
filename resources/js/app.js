@@ -37,3 +37,6 @@ router.on('finish', () => {
 });
 
 
+router.on('progress', progress => {
+  console.log(progress)
+})

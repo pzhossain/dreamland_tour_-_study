@@ -113,7 +113,7 @@ function submitForm() {
                     <label class="form-label">Activity</label>
                     <select v-model="form.activity" class="form-select">
                         <option value="" disabled>Select Activity</option>
-                        <option value="Eneble">Enable</option>
+                        <option value="Enable">Enable</option>
                         <option value="Disable">Disable</option>
                     </select>
                      <div v-if="errors.phone" class="text-danger mt-1">

@@ -70,6 +70,32 @@ function toggleSidebar() {
                         <i class="fa fa-flag me-2"></i> Countries
                     </Link>
 
+                    <!-- Country Details -->
+                    <Link
+                        v-if="page.props.user.can['country-detail-list']"
+                        href="/admin/country-details"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/country-details') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-globe me-2"></i> Country Details
+                    </Link>
+
+                    <!-- University -->
+                    <Link
+                        v-if="page.props.user.can['university-list']"
+                        href="/admin/universities"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/universities') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-graduation-cap me-2"></i> University
+                    </Link>
+
                     <!-- Bookings -->
                     <Link
                         v-if="page.props.user.can['booking-list']"

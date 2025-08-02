@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BookingSaveRequest extends FormRequest
+class UniversitySaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,11 @@ class BookingSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'country_id' => 'required|exists:countries,id',
             'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'bd_phone' => 'required|string',
-            'last_education' => 'required|string',
-            'prefferred_country' => 'required|string',
-            'pdf' => $this->hasFile('pdf') ?'file|max:2048' : '',
-
+            'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
+            'title' => 'required|string|max:255',
+            'rank' => 'required|integer|min:1|unique:universities,rank,' . $this->route('id'),
         ];
     }
 }

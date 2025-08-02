@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('universities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries')
             ->restrictOnDelete()
             ->cascadeOnUpdate();
             $table->string('name');
-            $table->string('email');
-            $table->string('bd_mobile');
-            $table->string('last_education');
-            $table->string('prefferred_country');
-            $table->string('pdf')->nullable();
+            $table->string('image');
+            $table->string('title');
+            $table->integer('rank')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('universities');
     }
 };

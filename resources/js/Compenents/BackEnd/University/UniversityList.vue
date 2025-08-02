@@ -8,26 +8,24 @@ const page = usePage();
 
 // Table headers
 const headers = [
-    { text: "ID", value: "id" },
-    { text: "Name", value: "name" },
-    { text: "Email", value: "email" },
-    { text: "BD Phone", value: "bd_mobile" },
-    { text: "Preffered Country", value: "prefferred_country" },
-    { text: "Last Education", value: "last_education" },
-    { text: "PDF", value: "pdf" },
+    { text: "SL", value: "id" },
+    { text: "Country name", value: "country.name" },
+    { text: "University Name", value: "name" },
+    { text: "Title", value: "title" },
+    { text: "Image", value: "image" },
     { text: "Action", value: "action" },
 ];
-console.log(page.props.bookings);
-// Users and search fields
-const items = ref(page.props.bookings);
 
-const searchField = ref(["id", "name", "email"]);
+// Users and search fields
+const items = ref(page.props.universities || []);
+
+const searchField = ref(["id", "name"]);
 const searchItem = ref();
 
 // Delete User
-function deleteBooking(id) {
-    if (confirm("Are you sure you want to delete this Booking?")) {
-        router.get(`/admin/booking/${id}`);
+function deleteUniversity(id) {
+    if (confirm("Are you sure you want to delete this University?")) {
+        router.get(`/admin/university/${id}`);
     }
 }
 
@@ -40,7 +38,7 @@ if (page.props.flash.status === false) {
 </script>
 
 <template>
-    <h3 class="fw-bold mb-4">Booking List</h3>
+    <h3 class="fw-bold mb-4">University List</h3>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <!-- Search Input -->
@@ -52,8 +50,12 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link v-if="page.props.user.can['booking-save']" :href="`/admin/booking-save-page?booking_id=${0}`" class="btn btn-success">
-            Add Booking
+        <Link
+            v-if="page.props.user.can['university-save']"
+            :href="`/admin/university-save-page?country_id=${0}`"
+            class="btn btn-success"
+        >
+            Add University
         </Link>
     </div>
 
@@ -67,19 +69,27 @@ if (page.props.flash.status === false) {
         :rows-per-page="5"
         table-class="table table-striped table-bordered"
     >
-        <template #item-pdf="{ pdf }">
-            <a :href="`/storage/booking/${pdf}`" target="_blank">View</a>
+        <template #item-image="{ image }">
+            <img
+                :src="`/storage/university/${image}`"
+                style="width: 50px; height: 50px"
+            />
         </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link v-if="page.props.user.can['booking-update']"
-                    :href="`/admin/booking-save-page?booking_id=${id}`"
+                <Link
+                    v-if="page.props.user.can['university-update']"
+                    :href="`/admin/university-save-page?university_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button v-if="page.props.user.can['booking-delete']" @click="deleteBooking(id)" class="btn btn-sm btn-danger">
+                <button
+                    v-if="page.props.user.can['university-delete']"
+                    @click="deleteUniversity(id)"
+                    class="btn btn-sm btn-danger"
+                >
                     Delete
                 </button>
             </div>

@@ -28,6 +28,7 @@ class User extends Authenticatable
         'is_active',
         'profile_image',
         'user_type',
+        'abroad_mobile'
     ];
 
     protected $attributes = [

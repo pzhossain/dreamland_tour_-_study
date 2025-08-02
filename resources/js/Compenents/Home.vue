@@ -12,9 +12,9 @@ const form = useForm({
     name: "",
     email: "",
     bd_phone: "",
-    abroad_phone: "",
     last_education: "",
     prefferred_country: "",
+    pdf: "",
 });
 
 // Custom dropdown logic
@@ -34,6 +34,7 @@ const selectCountry = (country) => {
 function submitForm() {
     form.post("/student/booking", {
         preserveScroll: true,
+        forceFormData: true,
         onSuccess: () => {
             if (page.props.flash.status == false) {
                 toaster.error(page.props.flash.message);
@@ -2603,9 +2604,9 @@ function submitForm() {
                                         v-model="form.bd_phone"
                                         type="text"
                                         class="form-control bg-white border-0"
-                                        placeholder="BD Mobile No"
+                                        placeholder="Mobile No"
                                     />
-                                    <label for="bd_phone">BD Mobile</label>
+                                    <label for="bd_phone">Mobile</label>
                                     <div
                                         v-if="errors.bd_phone"
                                         class="text-white mt-1"
@@ -2615,18 +2616,30 @@ function submitForm() {
                                 </div>
                             </div>
 
-                            <!-- Abroad Phone -->
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input
-                                        v-model="form.abroad_phone"
-                                        type="text"
+                                        @input="
+                                            form.pdf = $event.target.files[0]
+                                        "
+                                        type="file"
                                         class="form-control bg-white border-0"
-                                        placeholder="Abroad Mobile No"
+                                        placeholder="PDF"
                                     />
-                                    <label for="abroad_phone"
-                                        >Abroad Mobile</label
+                                    <label for="pdf">PDF</label>
+                                    <div
+                                        v-if="errors.pdf"
+                                        class="text-white mt-1"
                                     >
+                                        {{ errors.pdf[0] }}
+                                    </div>
+                                    <progress
+                                        v-if="form.progress"
+                                        class="w-100"
+                                        :max="form.pdf.size"
+                                    >
+                                        {{ form.progress.percentage }}
+                                    </progress>
                                 </div>
                             </div>
 

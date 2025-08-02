@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
+            $table->string('abroad_mobile')->nullable();
             $table->string('user_type')->default('student');
             $table->string('profile_image')->nullable();
             $table->string('is_active')->default('Enable');

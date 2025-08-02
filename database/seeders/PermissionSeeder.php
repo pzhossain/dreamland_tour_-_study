@@ -90,6 +90,20 @@ class PermissionSeeder extends Seeder
             'create-logo',
             'update-logo',
             'delete-logo',
+
+            //universities
+            'university-list',
+            'university-save-page',
+            'university-save',
+            'university-update',
+            'university-delete',
+
+            //country details
+            'country-detail-list',
+            'country-detail-save-page',
+            'country-detail-save',
+            'country-detail-update',
+            'country-detail-delete',
         ];
 
         foreach ($permissions as $permission) {
