@@ -11,7 +11,8 @@ const form = useForm({
     user_id: page.props.user.authUser.id,
     name: page.props.user.login == true ? page.props.user.authUser.name : "",
     email: page.props.user.login == true ? page.props.user.authUser.email : "",
-    bd_phone: page.props.user.login == true ? page.props.user.authUser.phone : "",
+    bd_phone:
+        page.props.user.login == true ? page.props.user.authUser.phone : "",
     last_education: "",
     prefferred_country: "",
     pdf: "",
@@ -49,9 +50,18 @@ function submitForm() {
 
 <template>
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div
+        class="container-fluid bg-breadcrumb"
+        :style="{
+            backgroundImage: `url(/storage/pageContent/${page.props.booking.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            height: '400px',
+        }"
+    >
         <div class="container text-center py-5" style="max-width: 900px">
-            <h3 class="text-white display-3 mb-4">Online Booking</h3>
+            <h3 class="text-white display-3 mb-4">{{ page.props.booking.title }}</h3>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
@@ -108,7 +118,9 @@ function submitForm() {
                                         class="form-control bg-white border-0"
                                         id="name"
                                         placeholder="Your Name"
-                                        :readonly="page.props.user.login==true"
+                                        :readonly="
+                                            page.props.user.login == true
+                                        "
                                     />
                                     <label for="name">Your Name</label>
                                     <div
@@ -129,7 +141,9 @@ function submitForm() {
                                         class="form-control bg-white border-0"
                                         id="email"
                                         placeholder="Your Email"
-                                        :readonly="page.props.user.login==true"
+                                        :readonly="
+                                            page.props.user.login == true
+                                        "
                                     />
                                     <label for="email">Your Email</label>
                                     <div
@@ -149,7 +163,9 @@ function submitForm() {
                                         type="text"
                                         class="form-control bg-white border-0"
                                         placeholder="Mobile No"
-                                        :readonly="page.props.user.login==true"
+                                        :readonly="
+                                            page.props.user.login == true
+                                        "
                                     />
                                     <label for="bd_phone">Mobile</label>
                                     <div
@@ -164,7 +180,9 @@ function submitForm() {
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input
-                                        @input="form.pdf = $event.target.files[0]"
+                                        @input="
+                                            form.pdf = $event.target.files[0]
+                                        "
                                         type="file"
                                         class="form-control bg-white border-0"
                                         placeholder="PDF"
@@ -176,9 +194,13 @@ function submitForm() {
                                     >
                                         {{ errors.pdf[0] }}
                                     </div>
-                                     <progress v-if="form.progress" class="w-100" :max="form.pdf.size">
-                                            {{ form.progress.percentage }}
-                                        </progress>
+                                    <progress
+                                        v-if="form.progress"
+                                        class="w-100"
+                                        :max="form.pdf.size"
+                                    >
+                                        {{ form.progress.percentage }}
+                                    </progress>
                                 </div>
                             </div>
 

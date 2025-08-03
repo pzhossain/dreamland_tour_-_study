@@ -36,6 +36,7 @@ class BookingController extends Controller
             'bd_mobile'=>$request->bd_phone,
             'last_education'=>$request->last_education,
             'prefferred_country'=>$request->prefferred_country,
+            'status'=>$request->status
         ];
 
         if($request->hasFile('pdf')) {
@@ -58,6 +59,7 @@ class BookingController extends Controller
             'bd_mobile'=>$request->bd_phone,
             'last_education'=>$request->last_education,
             'prefferred_country'=>$request->prefferred_country,
+            'status'=>$request->status
         ]);
 
         return redirect()->back()->with(['status'=>true,'message'=>'Booking Updated Successfully']);

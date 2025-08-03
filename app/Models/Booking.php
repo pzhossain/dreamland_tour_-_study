@@ -15,5 +15,6 @@ class Booking extends Model
         'last_education',
         'prefferred_country',
         'pdf',
+        'status'
     ];
 }

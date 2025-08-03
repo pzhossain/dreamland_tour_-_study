@@ -1119,7 +1119,7 @@ function submitForm() {
     <!-- Destination End -->
 
     <!-- Explore Tour Start -->
-    <div class="container-fluid ExploreTour py-5">
+    <!-- <div class="container-fluid ExploreTour py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px">
                 <h5 class="section-title px-3">Explore Tour</h5>
@@ -1559,7 +1559,7 @@ function submitForm() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Explore Tour Start -->
 
     <!-- Packages Start -->
@@ -1816,7 +1816,7 @@ function submitForm() {
     <!-- Packages End -->
 
     <!-- Gallery Start -->
-    <div class="container-fluid gallery py-5 my-5">
+    <!-- <div class="container-fluid gallery py-5 my-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px">
             <h5 class="section-title px-3">Our Gallery</h5>
             <h1 class="mb-4">Tourism & Traveling Gallery.</h1>
@@ -2518,7 +2518,7 @@ function submitForm() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Gallery End -->
 
     <!-- Tour Booking Start -->
@@ -2768,7 +2768,7 @@ function submitForm() {
     <!-- Tour Booking End -->
 
     <!-- Travel Guide Start -->
-    <div class="container-fluid guide py-5">
+    <!-- <div class="container-fluid guide py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px">
                 <h5 class="section-title px-3">Travel Guide</h5>
@@ -2941,11 +2941,11 @@ function submitForm() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Travel Guide End -->
 
     <!-- Blog Start -->
-    <div class="container-fluid blog py-5">
+    <!-- <div class="container-fluid blog py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px">
                 <h5 class="section-title px-3">Our Blog</h5>
@@ -3146,7 +3146,7 @@ function submitForm() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Blog End -->
 </template>
 

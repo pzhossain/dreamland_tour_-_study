@@ -1,5 +1,14 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+// Slug convert function
+function toSlug(text) {
+    return text
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
+}
 </script>
 
 <template>
@@ -23,23 +32,30 @@ import { Link } from '@inertiajs/vue3';
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <Link href="/" class="nav-item nav-link active"
-                        >Home </Link>
+                    <Link href="/" class="nav-item nav-link active">Home </Link>
                     <Link href="/about" class="nav-item nav-link">About</Link>
                     <Link href="/services" class="nav-item nav-link"
-                        >Services</Link>
-                    <Link href="/packages" class="nav-item nav-link"
-                        >Packages</Link>
-                    <Link href="/blog" class="nav-item nav-link">Blog</Link>
+                        >Services</Link
+                    >
+                    <!-- <Link href="/blog" class="nav-item nav-link">Blog</Link> -->
                     <div class="nav-item dropdown">
                         <a
                             href="#"
                             class="nav-link dropdown-toggle"
                             data-bs-toggle="dropdown"
-                            >Pages</a
+                            >Countries</a
                         >
                         <div class="dropdown-menu m-0">
-                            <Link href="/destination" class="dropdown-item"
+                            <Link
+                                v-for="page in page.props.pages"
+                                :key="page.id"
+                                :href="`/${toSlug(page.page_name)}`"
+                                class="dropdown-item"
+                            >
+                                {{ page.page_name }}
+                            </Link>
+
+                            <!-- <Link href="/destination" class="dropdown-item"
                                 >Destination</Link>
                             <Link href="/tour" class="dropdown-item"
                                 >Explore Tour</Link>
@@ -50,20 +66,21 @@ import { Link } from '@inertiajs/vue3';
                             <Link href="/guides" class="dropdown-item"
                                 >Travel Guides</Link>
                             <Link href="/testimonial" class="dropdown-item"
-                                >Testimonial</Link>
+                                >Testimonial</Link> -->
                         </div>
                     </div>
-                    <Link href="/contact" class="nav-item nav-link">Contact</Link>
+                    <Link href="/contact" class="nav-item nav-link"
+                        >Contact</Link
+                    >
                 </div>
                 <Link
                     href="/booking"
                     class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4"
-                    >Book Now</
-                Link>
+                    >Book Now</Link
+                >
             </div>
         </nav>
     </div>
-
 </template>
 
 <style scoped></style>

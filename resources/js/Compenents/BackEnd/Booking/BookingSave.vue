@@ -19,6 +19,7 @@ const form = useForm({
     bd_phone: "",
     last_education: "",
     prefferred_country: "",
+    status: "",
 });
 
 let URL = "/admin/booking";
@@ -29,6 +30,7 @@ if (booking_id != 0 && booking != null) {
     form.bd_phone = booking.bd_mobile;
     form.last_education = booking.last_education;
     form.prefferred_country = booking.prefferred_country;
+    form.status = booking.status;
     URL = "/admin/booking/" + booking_id;
 }
 
@@ -66,6 +68,7 @@ function selectUser(id){
     const user = items.value.find(user => user.id == id);
     form.name = user.name;
     form.email = user.email;
+    form.bd_phone = user.phone;
 }
 </script>
 
@@ -124,6 +127,20 @@ function selectUser(id){
                             <input v-model="form.last_education" type="text" class="form-control" />
                             <div v-if="errors.last_education" class="text-danger mt-1">
                                 {{ errors.last_education[0] }}
+                            </div>
+                        </div>
+
+                         <!-- Status -->
+                        <div class="mb-4">
+                            <label class="form-label">Status</label>
+                            <select v-model="form.status" class="form-select">
+                                <option value="" disabled>Select Status</option>
+                                <option value="Cancel">Cancel</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Approve">Approve</option>
+                            </select>
+                            <div v-if="errors.status" class="text-danger mt-1">
+                                {{ errors.status[0] }}
                             </div>
                         </div>
 

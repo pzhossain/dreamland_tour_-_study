@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('last_education');
             $table->string('prefferred_country');
             $table->string('pdf')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

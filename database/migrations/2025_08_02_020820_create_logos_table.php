@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('logos', function (Blueprint $table) {
             $table->id();
-            $table->string('logo_name');
-            $table->string('logo_image');
+            $table->string('content_name');
+            $table->string('image');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

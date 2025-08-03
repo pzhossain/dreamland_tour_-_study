@@ -79,7 +79,7 @@ if (page.props.flash.status === false) {
                 >
                     Edit
                 </Link>
-                <button v-if="page.props.user.can['delete-service-catgegory']"
+                <button v-if="page.props.user.can['delete-service-category']"
                     @click="deleteServiceCategory(id)"
                     class="btn btn-sm btn-danger"
                 >

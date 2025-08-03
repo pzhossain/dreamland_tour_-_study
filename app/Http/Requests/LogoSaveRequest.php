@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceCategorySaveRequest extends FormRequest
+class LogoSaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,8 +22,7 @@ class ServiceCategorySaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service_name' => 'required|string|max:255',
-            // 'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
+            //
         ];
     }
 }

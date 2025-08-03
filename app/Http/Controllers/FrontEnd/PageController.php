@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Models\Page;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Booking;
@@ -50,17 +51,20 @@ class PageController extends Controller
 
     //about page
     public function about(){
-        return Inertia::render('FrontEnd/AboutPage');
+        $aboutContent=Page::where('page_name','About')->first();
+        return Inertia::render('FrontEnd/AboutPage',['aboutContent'=>$aboutContent]);
     }
 
     //blog page
     public function blog(){
-        return Inertia::render('FrontEnd/BlogPage');
+        $blog=Page::where('page_name','Blog')->first();
+        return Inertia::render('FrontEnd/BlogPage',['blog'=>$blog]);
     }
 
     //tour
-    public function tour(){
-        return Inertia::render('FrontEnd/TourPage');
+    public function exploreTour(){
+        $tour=Page::where('page_name','Explore Tour')->first();
+        return Inertia::render('FrontEnd/TourPage',['tour'=>$tour]);
     }
 
     //contact page
@@ -68,19 +72,22 @@ class PageController extends Controller
         return Inertia::render('FrontEnd/ContactPage');
     }
     //booking
-    public function booking(){
+    public function travelBooking(){
         $countries=Country::all();
-        return Inertia::render('FrontEnd/BookingPage',['countries'=>$countries]);
+        $booking=Page::where('page_name','Travel Booking')->first();
+        return Inertia::render('FrontEnd/BookingPage',['countries'=>$countries,'booking'=>$booking]);
     }
 
     //destination
     public function destination(){
-        return Inertia::render('FrontEnd/DestinationPage');
+        $destination=Page::where('page_name','Destination')->first();
+        return Inertia::render('FrontEnd/DestinationPage' ,['destination'=>$destination]);
     }
 
     //gallery
-    public function gallery(){
-        return Inertia::render('FrontEnd/GalleryPage');
+    public function ourGallery(){
+        $gallery=Page::where('page_name','Our Gallery')->first();
+        return Inertia::render('FrontEnd/GalleryPage' ,['gallery'=>$gallery]);
     }
 
     //services
@@ -96,11 +103,13 @@ class PageController extends Controller
 
     // packages
     public function packages(){
-        return Inertia::render('FrontEnd/PackagesPage');
+        $packages=Page::where('page_name','Packages')->first();
+        return Inertia::render('FrontEnd/PackagesPage',['packages'=>$packages]);
     }
 
     //testimonial
     public function testimonial(){
-        return Inertia::render('FrontEnd/TestimonialPage');
+        $testimonial=Page::where('page_name','Testimonial')->first();
+        return Inertia::render('FrontEnd/TestimonialPage',['testimonial'=>$testimonial]);
     }
 }

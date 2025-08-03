@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Logo extends Model
 {
     protected $fillable = [
-        'logo_image',
-        'logo_name',
+        'image',
+        'content_name',
     ];
 }

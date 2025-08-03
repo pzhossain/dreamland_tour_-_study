@@ -28,7 +28,7 @@ class PageContentSaveRequest extends FormRequest
             'rank' => 'required|integer|unique:pages,rank,' . $this->route('id'),
             'meta_title' => 'required|string|max:255',
             'meta_description' => 'required|string',
-            'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
+            'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp' : 'required|string',
         ];
     }
 }

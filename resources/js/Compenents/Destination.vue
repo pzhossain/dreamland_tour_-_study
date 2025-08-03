@@ -1,12 +1,25 @@
-<script setup></script>
+<script setup>
+import { usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+</script>
 
 <template>
-
-
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div
+        class="container-fluid bg-breadcrumb"
+        :style="{
+            backgroundImage: `url(/storage/pageContent/${page.props.destination.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            height: '400px', // ✅ height string হিসেবে দিতে হবে
+        }"
+    >
         <div class="container text-center py-5" style="max-width: 900px">
-            <h3 class="text-white display-3 mb-4">Travel Destination</h3>
+            <h3 class="text-white display-3 mb-4">
+                {{ page.props.destination.title }}
+            </h3>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
@@ -14,14 +27,14 @@
             </ol>
         </div>
     </div>
+
     <!-- Header End -->
 
     <!-- Destination Start -->
     <div class="container-fluid destination py-5">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px">
-                <h5 class="section-title px-3">Destination</h5>
-                <h1 class="mb-0">Popular Destination</h1>
+                <div v-html="page.props.destination.description"></div>
             </div>
             <div class="tab-class text-center">
                 <ul

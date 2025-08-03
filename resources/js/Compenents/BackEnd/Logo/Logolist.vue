@@ -8,27 +8,21 @@ const page = usePage();
 
 // Table headers
 const headers = [
-    { text: "ID", value: "id" },
-    { text: "Name", value: "name" },
-    { text: "Email", value: "email" },
-    { text: "BD Phone", value: "bd_mobile" },
-    { text: "Preffered Country", value: "prefferred_country" },
-    { text: "Last Education", value: "last_education" },
-    { text: "Status", value: "status" },
-    { text: "PDF", value: "pdf" },
+    { text: "Image", value: "image" },
+    { text: "Name", value: "content_name" },
     { text: "Action", value: "action" },
 ];
 
 // Users and search fields
-const items = ref(page.props.bookings);
+const items = ref(page.props.logos || []);
 
-const searchField = ref(["id", "name", "email"]);
+const searchField = ref(["id", "name"]);
 const searchItem = ref();
 
 // Delete User
-function deleteBooking(id) {
-    if (confirm("Are you sure you want to delete this Booking?")) {
-        router.get(`/admin/booking/${id}`);
+function deleteCountry(id) {
+    if (confirm("Are you sure you want to delete this Logo?")) {
+        router.get(`/admin/logos/${id}`);
     }
 }
 
@@ -41,7 +35,7 @@ if (page.props.flash.status === false) {
 </script>
 
 <template>
-    <h3 class="fw-bold mb-4">Booking List</h3>
+    <h3 class="fw-bold mb-4">Logo/Banner List</h3>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <!-- Search Input -->
@@ -53,8 +47,11 @@ if (page.props.flash.status === false) {
         />
 
         <!-- Add Button -->
-        <Link v-if="page.props.user.can['booking-save']" :href="`/admin/booking-save-page?booking_id=${0}`" class="btn btn-success">
-            Add Booking
+        <Link v-if="page.props.user.can['logo-save']"
+            :href="`/admin/logo-save-page?logo_id=${0}`"
+            class="btn btn-success"
+        >
+            Add Logo
         </Link>
     </div>
 
@@ -68,19 +65,25 @@ if (page.props.flash.status === false) {
         :rows-per-page="5"
         table-class="table table-striped table-bordered"
     >
-        <template #item-pdf="{ pdf }">
-            <a :href="`/storage/booking/${pdf}`" target="_blank">View</a>
+        <template #item-image="{ image }">
+            <img
+                :src="`/storage/logo/${image}`"
+                style="width: 50px; height: 50px"
+            />
         </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
             <div class="d-flex gap-2">
-                <Link v-if="page.props.user.can['booking-update']"
-                    :href="`/admin/booking-save-page?booking_id=${id}`"
+                <Link v-if="page.props.user.can['logo-update']"
+                    :href="`/admin/logo-save-page?logo_id=${id}`"
                     class="btn btn-sm btn-primary"
                 >
                     Edit
                 </Link>
-                <button v-if="page.props.user.can['booking-delete']" @click="deleteBooking(id)" class="btn btn-sm btn-danger">
+                <button v-if="page.props.user.can['logo-delete']"
+                    @click="deleteLogo(id)"
+                    class="btn btn-sm btn-danger"
+                >
                     Delete
                 </button>
             </div>
@@ -89,3 +92,4 @@ if (page.props.flash.status === false) {
 </template>
 
 <style scoped></style>
+

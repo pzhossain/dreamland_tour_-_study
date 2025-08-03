@@ -9,10 +9,10 @@ const page = usePage();
 // Table headers
 const headers = [
     { text: "Id", value: "id" },
-    { text: "Page Name", value: "name" },
+    { text: "Page Name", value: "page_name" },
     { text: "Page Title", value: "title" },
     { text: "Page Image", value: "image" },
-    { text: "Page Description", value: "page_description" },
+    { text: "Page Description", value: "description" },
     { text: "Meta Title", value: "meta_title" },
     { text: "Meta Description", value: "meta_description" },
     { text: "Rank", value: "rank" },
@@ -21,6 +21,7 @@ const headers = [
 
 // Users and search fields
 const items = ref(page.props.pageContents || []);
+console.log(items.value);
 
 const searchField = ref(["id", "name"]);
 const searchItem = ref();
@@ -79,7 +80,7 @@ if (page.props.flash.status === false) {
         </template>
 
           <template #item-description="{ description }">
-            <span v-html="service_description"></span>
+            <span v-html="description"></span>
         </template>
         <!-- Action Column -->
         <template #item-action="{ id }">
