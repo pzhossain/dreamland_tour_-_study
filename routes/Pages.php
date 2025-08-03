@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FrontEnd\CountryPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontEnd\PageController;
+use App\Http\Controllers\FrontEnd\ServicePageController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 
 Route::get('/profile', [PageController::class, 'profile'])->name('profile')->middleware(TokenVerificationMiddleware::class);
@@ -17,3 +19,13 @@ Route::get('/packages', [PageController::class, 'packages'])->name('packages');
 Route::get('/testimonial', [PageController::class, 'testimonial'])->name('testimonial');
 Route::get('/explore-tour', [PageController::class, 'exploreTour'])->name('explore-tour');
 
+
+
+//service by category
+
+Route::get('/service-by-category/{id}', [ServicePageController::class, 'serviceByCategory'])->name('service-by-category');
+
+
+//country by id
+
+Route::get('/country-by-id/{id}', [CountryPageController::class, 'countryById'])->name('country-by-id');

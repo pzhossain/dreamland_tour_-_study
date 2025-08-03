@@ -1,86 +1,81 @@
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import { ref } from "vue";
+import { Link, usePage, router } from "@inertiajs/vue3";
 
 const page = usePage();
-// Slug convert function
+const selectedCountry = ref(null);
+const selectedCountryId = ref(null);
+
+// Slug converter (optional)
 function toSlug(text) {
-    return text
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, "");
+  return text.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
+}
+
+// Country select handler
+function selectCountry(country) {
+  selectedCountry.value = country;
+  selectedCountryId.value = country.id;
+  router.get(`/country-by-id/${country.id}`, {}, {
+    preserveScroll: true,
+    preserveState: true,
+  });
 }
 </script>
 
 <template>
-    <div class="container-fluid position-relative p-0">
-        <nav
-            class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
-        >
-            <a href="" class="navbar-brand p-0">
-                <h1 class="m-0">
-                    <i class="fa fa-map-marker-alt me-3"></i>Travela
-                </h1>
-                <!-- <img src="img/logo.png" alt="Logo"> -->
-            </a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse"
-            >
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <Link href="/" class="nav-item nav-link active">Home </Link>
-                    <Link href="/about" class="nav-item nav-link">About</Link>
-                    <Link href="/services" class="nav-item nav-link"
-                        >Services</Link
-                    >
-                    <!-- <Link href="/blog" class="nav-item nav-link">Blog</Link> -->
-                    <div class="nav-item dropdown">
-                        <a
-                            href="#"
-                            class="nav-link dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            >Countries</a
-                        >
-                        <div class="dropdown-menu m-0">
-                            <Link
-                                v-for="page in page.props.pages"
-                                :key="page.id"
-                                :href="`/${toSlug(page.page_name)}`"
-                                class="dropdown-item"
-                            >
-                                {{ page.page_name }}
-                            </Link>
+  <div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+      <Link href="/" class="navbar-brand p-0">
+        <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Travela</h1>
+      </Link>
 
-                            <!-- <Link href="/destination" class="dropdown-item"
-                                >Destination</Link>
-                            <Link href="/tour" class="dropdown-item"
-                                >Explore Tour</Link>
-                            <Link href="/booking" class="dropdown-item"
-                                >Travel Booking</Link>
-                            <Link href="/gallery" class="dropdown-item"
-                                >Our Gallery</Link>
-                            <Link href="/guides" class="dropdown-item"
-                                >Travel Guides</Link>
-                            <Link href="/testimonial" class="dropdown-item"
-                                >Testimonial</Link> -->
-                        </div>
-                    </div>
-                    <Link href="/contact" class="nav-item nav-link"
-                        >Contact</Link
-                    >
-                </div>
-                <Link
-                    href="/booking"
-                    class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4"
-                    >Book Now</Link
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="fa fa-bars"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <Link href="/" class="nav-item nav-link">Home</Link>
+          <Link href="/about" class="nav-item nav-link">About</Link>
+          <Link href="/services" class="nav-item nav-link">Services</Link>
+
+          <!-- Country Dropdown -->
+          <div class="nav-item dropdown custom-dropdown-hover">
+            <a href="#" class="nav-link dropdown-toggle">Countries</a>
+            <div class="dropdown-menu m-0 shadow">
+              <ul class="list-unstyled m-0 p-2" style="max-height: 250px; overflow-y: auto;">
+                <li
+                  v-for="(country, index) in page.props.countries"
+                  :key="index"
+                  @click.stop="selectCountry(country)"
+                  class="dropdown-item d-flex align-items-center gap-2"
+                  style="cursor: pointer;"
                 >
+                  <img
+                    :src="`/storage/country/${country.country_flag}`"
+                    alt="flag"
+                    style="width: 20px; height: 14px; object-fit: cover;"
+                  />
+                  {{ country.country_name }}
+                </li>
+              </ul>
             </div>
-        </nav>
-    </div>
+          </div>
+
+          <Link href="/contact" class="nav-item nav-link">Contact</Link>
+        </div>
+
+        <Link href="/booking" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">
+          Book Now
+        </Link>
+      </div>
+    </nav>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* Hover Dropdown */
+.custom-dropdown-hover:hover .dropdown-menu {
+  display: block !important;
+}
+</style>

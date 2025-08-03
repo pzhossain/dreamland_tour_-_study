@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Models\Logo;
 use App\Models\Page;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Booking;
 use App\Models\Country;
 use App\Models\Services;
+use App\Models\ServiceCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,8 +94,9 @@ class PageController extends Controller
 
     //services
     public function services(){
-        $services=Services::all();
-        return Inertia::render('FrontEnd/ServicesPage',['services'=>$services]);
+        $serviceCategories=ServiceCategory::all();
+        $logo=Logo::where('content_name','Services')->first();
+        return Inertia::render('FrontEnd/ServicesPage',['serviceCategories'=>$serviceCategories,'logo'=>$logo]);
     }
 
     //guides

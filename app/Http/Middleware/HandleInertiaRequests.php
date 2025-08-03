@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Page;
+use App\Models\Country;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,7 @@ class HandleInertiaRequests extends Middleware
             $can[$permission->name] = Auth::user() && Auth::user()->can($permission->name);
         }
         $pages=Page::orderBy('rank','asc')->get();
+        $countries=Country::all();
         return [
             'user' => [
                 'login' => Auth::check() ? true : false,
@@ -58,7 +60,8 @@ class HandleInertiaRequests extends Middleware
             'errors' => fn() => $request->session()->get('errors')
                 ? $request->session()->get('errors')->getBag('default')->getMessages()
                 : (object) [],
-            'pages' => $pages
+            'pages' => $pages,
+            'countries'=>$countries
         ];
     }
 }
