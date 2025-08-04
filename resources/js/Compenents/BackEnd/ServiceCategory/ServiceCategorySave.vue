@@ -15,12 +15,14 @@ const form = useForm({
     image: "",
     service_name: "",
     service_title: "",
+    rank: "",
 });
 
 if(service_category_id != 0 && serviceCategory != null){
     form.image = serviceCategory.image;
     form.service_name = serviceCategory.service_name;
     form.service_title = serviceCategory.service_title;
+    form.rank = serviceCategory.rank;
 
 }
 
@@ -50,6 +52,13 @@ function submitForm() {
         <div class="card shadow p-4 bg-white">
           <h4 class="text-center mb-3">{{ service_category_id == 0 ? "Create Service Category" : "Update Service Category" }}</h4>
           <form @submit.prevent="submitForm">
+             <div class="mb-3">
+              <label class="form-label">Rank</label>
+              <input v-model="form.rank" type="text" class="form-control" />
+              <div v-if="errors.rank" class="text-danger">{{ errors.rank[0] }}</div>
+            </div>
+
+
             <div class="mb-3">
               <label class="form-label">Service Name</label>
               <input v-model="form.service_name" type="text" class="form-control" />

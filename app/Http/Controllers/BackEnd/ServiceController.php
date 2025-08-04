@@ -16,7 +16,7 @@ class ServiceController extends Controller
     //service list
     public function serviceList()
     {
-        $services = Services::with('serviceCategory')->get();
+        $services = Services::with('serviceCategory')->orderBy('rank', 'asc')->get();
         return Inertia::render('BackEnd/Service/ServiceListPage', ['services' => $services]);
     }
 

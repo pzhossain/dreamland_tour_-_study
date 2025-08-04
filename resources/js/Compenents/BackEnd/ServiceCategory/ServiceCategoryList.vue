@@ -11,6 +11,7 @@ const headers = [
     { text: "Image", value: "image" ,sortable: true},
     { text: "Service Name", value: "service_name" ,sortable: true},
     { text: "Service Title", value: "service_title" },
+    { text: "Rank", value: "rank" },
     { text: "Action", value: "action" },
 ];
 

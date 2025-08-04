@@ -23,6 +23,7 @@ class ServiceCategorySaveRequest extends FormRequest
     {
         return [
             'service_name' => 'required|string|max:255',
+            'rank' => 'required|integer|min:1|unique:service_categories,rank,' . $this->route('id'),
             // 'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
         ];
     }

@@ -85,11 +85,11 @@ class PermissionSeeder extends Seeder
             'page-content-delete',
 
             //logo
-            'list-logo',
+            'logo-list',
             'logo-save-page',
-            'create-logo',
-            'update-logo',
-            'delete-logo',
+            'logo-save',
+            'logo-update',
+            'logo-delete',
 
             //universities
             'university-list',
@@ -104,6 +104,13 @@ class PermissionSeeder extends Seeder
             'country-detail-save',
             'country-detail-update',
             'country-detail-delete',
+
+            //pages
+            'page-list',
+            'page-save-page',
+            'page-save',
+            'page-update',
+            'page-delete',
         ];
 
         foreach ($permissions as $permission) {

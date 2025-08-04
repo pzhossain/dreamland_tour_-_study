@@ -1,6 +1,7 @@
 <script setup>
 import { Link, usePage } from "@inertiajs/vue3";
 const page = usePage();
+console.log(page.props.setting);
 </script>
 
 <template>
@@ -8,14 +9,20 @@ const page = usePage();
     <div
         class="container-fluid bg-breadcrumb"
         :style="{
-            backgroundImage: `url(/storage/logo/${page.props.logo.image})`,
+            backgroundImage: `url(/storage/logo/${page.props.setting.service_banner_image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
         }"
     >
         <div class="container text-center py-5" style="max-width: 900px">
-            <h3 class="text-white display-3 mb-4">{{ page.props.logo.title }}</h3>
+            <h3 class="text-white display-3 mb-4">
+                {{
+                    page.props.logo && page.props.logo.title
+                        ? page.props.logo.title
+                        : ""
+                }}
+            </h3>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
@@ -23,6 +30,7 @@ const page = usePage();
             </ol>
         </div>
     </div>
+
     <!-- Header End -->
 
     <!-- Services Start -->
@@ -62,8 +70,6 @@ const page = usePage();
             </div>
         </div>
     </div>
-    <!-- Services End -->
-
     <!-- Services End -->
 
     <!-- Testimonial Start -->

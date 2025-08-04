@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PageContentSaveRequest;
+use App\Models\PageName;
 
 class PageContentController extends Controller
 {
@@ -23,17 +24,18 @@ class PageContentController extends Controller
     public function pageContentSavePage(Request $request)
     {
         $pageContent = Page::find($request->page_content_id);
-        return Inertia::render('BackEnd/Content/PageContentSavePage', ['pageContent' => $pageContent]);
+        $pageList = PageName::all();
+        return Inertia::render('BackEnd/Content/PageContentSavePage', ['pageContent' => $pageContent, 'pageList' => $pageList]);
     }
 
     //page content save
     public function pageContentSave(PageContentSaveRequest $request)
     {
         $data = [
+            'page_name_id' => $request->page_name_id,
             'page_name' => $request->page_name,
             'title' => $request->title,
             'description' => $request->description,
-            'rank' => $request->rank,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
         ];
@@ -61,10 +63,10 @@ class PageContentController extends Controller
         $page = Page::findOrFail($id);
 
         $data = [
+            'page_name_id' => $request->page_name_id,
             'page_name' => $request->page_name,
             'title' => $request->title,
             'description' => $request->description,
-            'rank' => $request->rank,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
         ];

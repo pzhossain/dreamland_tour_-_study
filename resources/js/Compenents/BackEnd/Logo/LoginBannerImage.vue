@@ -2,16 +2,16 @@
 import { ref } from "vue";
 
 const props = defineProps({
-    logoImage: {
+    loginBannerImage: {
         type: [String, File],
         default: null,
     },
 });
 
-const logoImage = props.logoImage
-    ? `/storage/logo/${props.logoImage}`
+const currentImage = props.loginBannerImage
+    ? `/storage/logo/${props.loginBannerImage}`
     : null;
-const preview = ref(logoImage);
+const preview = ref(currentImage);
 const emit = defineEmits(["image"]);
 
 const imageSelected = (e) => {
@@ -19,34 +19,19 @@ const imageSelected = (e) => {
     emit("image", e.target.files[0]);
 };
 
-const clearImage = () => {
-    preview.value = null;
-    emit("image", null);
-    document.getElementById("image").value = null;
-};
 </script>
 
 <template>
   <div class="position-relative d-inline-block">
     <label for="image" class="d-block">
       <img
-        :src="preview ? preview : logoImage ? `/storage/logo/${logoImage}` : 'placeholder.png'"
+        :src="preview ? preview : loginBannerImage ? `/storage/logo/${loginBannerImage}` : 'placeholder.png'"
         class="img-thumbnail border border-dark rounded w-100"
         style="width: 100px; height: 100px; object-fit: cover;"
-        alt="Logo Image"
+        alt="Login Banner Logo"
       />
     </label>
 
-    <!-- Remove Button -->
-    <button
-      @click="clearImage"
-      type="button"
-      class="btn btn-sm btn-danger position-absolute top-0 end-0 rounded-circle px-2 py-1"
-      title="Remove Image"
-      style="z-index: 2;"
-    >
-      ✕
-    </button>
 
     <!-- Hidden file input (but clickable over the image) -->
     <input
@@ -58,3 +43,5 @@ const clearImage = () => {
     />
   </div>
 </template>
+
+

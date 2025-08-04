@@ -6,11 +6,6 @@ const page = usePage();
 const selectedCountry = ref(null);
 const selectedCountryId = ref(null);
 
-// Slug converter (optional)
-function toSlug(text) {
-  return text.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
-}
-
 // Country select handler
 function selectCountry(country) {
   selectedCountry.value = country;
@@ -25,9 +20,7 @@ function selectCountry(country) {
 <template>
   <div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-      <Link href="/" class="navbar-brand p-0">
-        <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Travela</h1>
-      </Link>
+      <img :src="`/storage/logo/${page.props.setting.site_logo}`" alt="logo" style="width: 200px; height: 50px">
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="fa fa-bars"></span>
@@ -65,7 +58,7 @@ function selectCountry(country) {
           <Link href="/contact" class="nav-item nav-link">Contact</Link>
         </div>
 
-        <Link href="/booking" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">
+        <Link href="/travel-booking" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">
           Book Now
         </Link>
       </div>

@@ -1,9 +1,9 @@
 <script setup>
 import { usePage, useForm, router } from "@inertiajs/vue3";
 import { createToaster } from "@meforma/vue-toaster";
-import { ref, computed } from "vue";
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import {  computed } from "vue";
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 import PageContentImage from "./PageContentImage.vue";
 
@@ -19,9 +19,10 @@ const form = useForm({
     title: "",
     description: "",
     page_name: "",
-    rank: "",
     meta_title: "",
     meta_description: "",
+    page_name_id: "",
+
 });
 
 if (page_content_id != 0 && pageContent != null) {
@@ -32,6 +33,7 @@ if (page_content_id != 0 && pageContent != null) {
     form.rank = pageContent.rank;
     form.meta_title = pageContent.meta_title;
     form.meta_description = pageContent.meta_description;
+    form.page_name_id = pageContent.page_name_id;
 }
 
 const URL =
@@ -68,18 +70,6 @@ function submitForm() {
                     </h4>
 
                     <form @submit.prevent="submitForm">
-                        <!-- Rank -->
-                        <div class="mb-3">
-                            <label class="form-label">Rank</label>
-                            <input
-                                v-model="form.rank"
-                                type="number"
-                                class="form-control"
-                            />
-                            <div v-if="errors.rank" class="text-danger">
-                                {{ errors.rank[0] }}
-                            </div>
-                        </div>
 
                         <!-- Title -->
                         <div class="mb-3">
@@ -97,11 +87,21 @@ function submitForm() {
                         <!-- Page Name -->
                         <div class="mb-3">
                             <label class="form-label">Page Name</label>
-                            <input
-                                v-model="form.page_name"
-                                type="text"
-                                class="form-control"
-                            />
+                            <select
+                                v-model="form.page_name_id"
+                                class="form-select"
+                            >
+                                <option value="" disabled>
+                                    Select Page Name
+                                </option>
+                                <option
+                                    v-for="page in page.props.pageList"
+                                    :key="page.id"
+                                    :value="page.id"
+                                >
+                                    {{ page.name }}
+                                </option>
+                            </select>
                             <div v-if="errors.page_name" class="text-danger">
                                 {{ errors.page_name[0] }}
                             </div>
@@ -114,7 +114,7 @@ function submitForm() {
                                 v-model:content="form.description"
                                 content-type="html"
                                 theme="snow"
-                                style="height: 200px;"
+                                style="height: 200px"
                             />
                             <div v-if="errors.description" class="text-danger">
                                 {{ errors.description[0] }}

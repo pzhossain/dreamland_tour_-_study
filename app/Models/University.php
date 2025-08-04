@@ -13,4 +13,8 @@ class University extends Model
         'image',
         'rank'
     ];
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
 }

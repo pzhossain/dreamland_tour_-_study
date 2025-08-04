@@ -26,7 +26,7 @@ class CountryDetailSaveRequest extends FormRequest
             'description' => 'required|string',
             'title' => 'required|string',
             'key_points' => 'required|string',
-            'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
+            // 'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:100' : 'required|string',
         ];
     }
 }

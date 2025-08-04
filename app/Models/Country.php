@@ -10,4 +10,8 @@ class Country extends Model
         'country_name',
         'country_flag'
     ];
+
+    public function countryDetail(){
+        return $this->hasOne(CountryDetail::class);
+    }
 }

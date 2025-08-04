@@ -1,17 +1,30 @@
-<script setup></script>
+<script setup>
+import { usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+
+</script>
 
 <template>
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
-        <div class="container text-center py-5" style="max-width: 900px">
-            <h3 class="text-white display-3 mb-4">Contact Us</h3>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Contact</li>
-            </ol>
-        </div>
+      <div
+    class="container-fluid bg-breadcrumb"
+    :style="{
+      backgroundImage: `url('/storage/logo/${page.props.setting.contact_banner_image}')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }"
+  >
+    <div class="container text-center py-5" style="max-width: 900px">
+      <h3 class="text-white display-3 mb-4">Contact Us</h3>
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">Contact</li>
+      </ol>
     </div>
+  </div>
     <!-- Header End -->
 
     <!-- Contact Start -->
@@ -28,10 +41,9 @@
                             <i
                                 class="fa fa-map-marker-alt fa-3x text-primary"
                             ></i>
-                            <h4 class="text-primary"><Address></Address></h4>
                             <p class="mb-0">
-                                123 ranking Street, <br />
-                                New York, USA
+                               <br />
+                                {{ page.props.setting.site_address }}
                             </p>
                         </div>
                         <div class="text-center mb-4">
@@ -39,8 +51,8 @@
                                 class="fa fa-phone-alt fa-3x text-primary mb-3"
                             ></i>
                             <h4 class="text-primary">Mobile</h4>
-                            <p class="mb-0">+012 345 67890</p>
-                            <p class="mb-0">+012 345 67890</p>
+                            <p class="mb-0">{{ page.props.setting.site_phone }}</p>
+                            <p class="mb-0">{{ page.props.setting.site_fax }}</p>
                         </div>
 
                         <div class="text-center">
@@ -48,22 +60,12 @@
                                 class="fa fa-envelope-open fa-3x text-primary mb-3"
                             ></i>
                             <h4 class="text-primary">Email</h4>
-                            <p class="mb-0">info@example.com</p>
-                            <p class="mb-0">info@example.com</p>
+                            <p class="mb-0">{{ page.props.setting.site_email }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <h3 class="mb-2">Send us a message</h3>
-                    <p class="mb-4">
-                        The contact form is currently inactive. Get a functional
-                        and working contact form with Ajax & PHP in a few
-                        minutes. Just copy and paste the files, add a little
-                        code and you're done.
-                        <a href="https://htmlcodex.com/contact-form"
-                            >Download Now</a
-                        >.
-                    </p>
                     <form>
                         <div class="row g-3">
                             <div class="col-md-6">

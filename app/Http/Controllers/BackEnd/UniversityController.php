@@ -16,7 +16,7 @@ class UniversityController extends Controller
     public function universityList()
     {
 
-        $universities = University::all();
+        $universities = University::with('country.countryDetail')->get();
         return Inertia::render('BackEnd/University/UniversityListPage', ['universities' => $universities]);
     }
 

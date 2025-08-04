@@ -202,6 +202,19 @@ function toggleSidebar() {
                         <i class="fa fa-user-graduate me-2"></i> Students
                     </Link>
 
+                       <!-- Pages -->
+                    <Link
+                        v-if="page.props.user.can['page-list']"
+                        href="/admin/pages"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/pages') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-file-alt me-2"></i> Pages
+                    </Link>
+
                     <!-- Page contents -->
                     <Link
                         v-if="page.props.user.can['page-content-list']"
@@ -213,6 +226,19 @@ function toggleSidebar() {
                         style="text-decoration: none"
                     >
                         <i class="fa fa-file-alt me-2"></i> Page Contents
+                    </Link>
+
+                       <!-- Page contents -->
+                    <Link
+                        v-if="page.props.user.can['logo-list']"
+                        href="/admin/logos"
+                        :class="[
+                            'admin-nav-item admin-nav-link',
+                            isActiveRoute('/logos') ? 'active' : '',
+                        ]"
+                        style="text-decoration: none"
+                    >
+                        <i class="fa fa-file-alt me-2"></i> Logo/Banner
                     </Link>
                 </div>
             </nav>

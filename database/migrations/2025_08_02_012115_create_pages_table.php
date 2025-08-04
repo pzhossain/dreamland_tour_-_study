@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name');
+            $table->unsignedBigInteger('page_name_id');
+            $table->foreign('page_name_id')->references('id')->on('page_names')
+            ->restrictOnDelete()
+            ->cascadeOnUpdate();
             $table->string('title');
             $table->longText('description');
             $table->string('image');
             $table->string('meta_title');
             $table->string('meta_description');
-            $table->integer('rank')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

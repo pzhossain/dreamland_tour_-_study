@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BookingSaveRequest extends FormRequest
@@ -11,7 +12,11 @@ class BookingSaveRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user=Auth::user();
+        if($user->is_active=='Enable'){
+               return true;
+        }
+        return false;
     }
 
     /**

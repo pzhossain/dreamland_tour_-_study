@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Models\Logo;
 use App\Models\Page;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Booking;
 use App\Models\Country;
-use App\Models\Services;
+use App\Models\PageName;
+use App\Models\University;
+use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,12 @@ class PageController extends Controller
         $userId=Auth::user()->id;
         $profile=User::find($userId);
         return Inertia::render('ProfilePage',['profile'=>$profile]);
+    }
+
+    public function page(Request $request, $pageName){
+
+        $pageView=PageName::where('slug',$pageName)->with('pages')->first();
+        return Inertia::render('FrontEnd/PageViewPage',['pageView'=>$pageView]);
     }
 
     //student dashboard page
@@ -48,36 +55,31 @@ class PageController extends Controller
     //home page
     public function home(){
         $countries=Country::all();
-        return Inertia::render('FrontEnd/HomePage',['countries'=>$countries]);
+        $serviceCategories=ServiceCategory::all();
+        $universities=University::with('country')->get();
+        return Inertia::render('FrontEnd/HomePage',['countries'=>$countries,'serviceCategories'=>$serviceCategories,'universities'=>$universities]);
     }
 
-    //about page
+    //about
     public function about(){
-        $aboutContent=Page::where('page_name','About')->first();
-        return Inertia::render('FrontEnd/AboutPage',['aboutContent'=>$aboutContent]);
+        return Inertia::render('FrontEnd/AboutPage');
     }
 
-    //blog page
-    public function blog(){
-        $blog=Page::where('page_name','Blog')->first();
-        return Inertia::render('FrontEnd/BlogPage',['blog'=>$blog]);
+    public function pageView($page){
+        $pageView=PageName::where('name',$page)->with('pages')->first();
+        return Inertia::render('FrontEnd/PageViewPage',['pageView'=>$pageView]);
+
     }
 
-    //tour
-    public function exploreTour(){
-        $tour=Page::where('page_name','Explore Tour')->first();
-        return Inertia::render('FrontEnd/TourPage',['tour'=>$tour]);
-    }
 
     //contact page
     public function contact(){
         return Inertia::render('FrontEnd/ContactPage');
     }
     //booking
-    public function travelBooking(){
-        $countries=Country::all();
-        $booking=Page::where('page_name','Travel Booking')->first();
-        return Inertia::render('FrontEnd/BookingPage',['countries'=>$countries,'booking'=>$booking]);
+    public function travelBooking(Request $request){
+        $university=University::find($request->university_id);
+        return Inertia::render('FrontEnd/BookingPage',['university'=>$university]);
     }
 
     //destination
@@ -95,8 +97,7 @@ class PageController extends Controller
     //services
     public function services(){
         $serviceCategories=ServiceCategory::all();
-        $logo=Logo::where('content_name','Services')->first();
-        return Inertia::render('FrontEnd/ServicesPage',['serviceCategories'=>$serviceCategories,'logo'=>$logo]);
+        return Inertia::render('FrontEnd/ServicesPage',['serviceCategories'=>$serviceCategories]);
     }
 
     //guides
@@ -106,13 +107,13 @@ class PageController extends Controller
 
     // packages
     public function packages(){
-        $packages=Page::where('page_name','Packages')->first();
-        return Inertia::render('FrontEnd/PackagesPage',['packages'=>$packages]);
+
+        return Inertia::render('FrontEnd/PackagesPage');
     }
 
     //testimonial
     public function testimonial(){
-        $testimonial=Page::where('page_name','Testimonial')->first();
-        return Inertia::render('FrontEnd/TestimonialPage',['testimonial'=>$testimonial]);
+        // $testimonial=Page::where('page_name','Testimonial')->first();
+        return Inertia::render('FrontEnd/TestimonialPage',);
     }
 }

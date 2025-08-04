@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('service_name');
             $table->longText('service_title');
             $table->string('image');
+            $table->integer('rank')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

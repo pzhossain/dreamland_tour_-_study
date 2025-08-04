@@ -14,7 +14,7 @@ class ServiceCategoryController extends Controller
     //service category list
     public function ServiceCategoryList()
     {
-        $serviceCategories = ServiceCategory::all();
+        $serviceCategories = ServiceCategory::orderBy('rank', 'asc')->get();
         return Inertia::render('BackEnd/ServiceCategory/ServiceCategoryListPage', ['serviceCategories' => $serviceCategories]);
     }
 
@@ -31,6 +31,7 @@ class ServiceCategoryController extends Controller
         $data = [
             'service_name' => $request->service_name,
             'service_title' => $request->service_title,
+            'rank' => $request->rank
         ];
 
         // Check if image file is uploaded
@@ -61,6 +62,7 @@ class ServiceCategoryController extends Controller
         $data = [
             'service_name' => $request->service_name,
             'service_title' => $request->service_title,
+            'rank' => $request->rank
         ];
 
         // Check if image file is uploaded

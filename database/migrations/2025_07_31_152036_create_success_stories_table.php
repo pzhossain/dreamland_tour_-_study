@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('success_stories', function (Blueprint $table) {
             $table->id();
             $table->string('image')->nullable();
-            $table->string('video')->nullable();
+            $table->longText('video')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('country_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('country_id')->unique();
             $table->foreign('country_id')->references('id')->on('countries')
             ->restrictOnDelete()
             ->cascadeOnUpdate();

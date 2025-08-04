@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Page;
+use App\Models\Logo;
 use App\Models\Country;
 use Inertia\Middleware;
+use App\Models\PageName;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
@@ -45,8 +46,9 @@ class HandleInertiaRequests extends Middleware
         foreach ($permissions as $permission) {
             $can[$permission->name] = Auth::user() && Auth::user()->can($permission->name);
         }
-        $pages=Page::orderBy('rank','asc')->get();
+        $pageNameList=PageName::all();
         $countries=Country::all();
+        $setting=Logo::first();
         return [
             'user' => [
                 'login' => Auth::check() ? true : false,
@@ -60,8 +62,9 @@ class HandleInertiaRequests extends Middleware
             'errors' => fn() => $request->session()->get('errors')
                 ? $request->session()->get('errors')->getBag('default')->getMessages()
                 : (object) [],
-            'pages' => $pages,
-            'countries'=>$countries
+            'pageNameList' => $pageNameList,
+            'countries'=>$countries,
+            'setting'=>$setting
         ];
     }
 }

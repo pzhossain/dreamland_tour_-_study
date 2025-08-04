@@ -21,14 +21,15 @@ const form = useForm({
 
 if (university_id != 0 && university != null) {
     form.country_id = university.country_id;
-    form.name = country.name;
-    form.title = country.title;
-    form.image = country.image;
+    form.name = university.name;
+    form.title = university.title;
+    form.rank = university.rank;
+    form.image = university.image;
 }
 
 const URL =
     university_id != 0
-        ? `/admin/university/${country_id}`
+        ? `/admin/university/${university_id}`
         : "/admin/university";
 
 function submitForm() {

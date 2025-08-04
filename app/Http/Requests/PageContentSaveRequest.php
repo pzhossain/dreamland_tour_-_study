@@ -22,10 +22,9 @@ class PageContentSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'page_name' => 'required|string|max:255',
+            'page_name_id' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'rank' => 'required|integer|unique:pages,rank,' . $this->route('id'),
             'meta_title' => 'required|string|max:255',
             'meta_description' => 'required|string',
             'image' => $this->hasFile('image') ? 'image|mimes:jpeg,png,jpg,gif,svg,webp' : 'required|string',

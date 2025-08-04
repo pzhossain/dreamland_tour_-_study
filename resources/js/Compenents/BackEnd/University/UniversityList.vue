@@ -9,7 +9,7 @@ const page = usePage();
 // Table headers
 const headers = [
     { text: "SL", value: "id" },
-    { text: "Country name", value: "country.name" },
+    { text: "Country name", value: "country.country_name" },
     { text: "University Name", value: "name" },
     { text: "Title", value: "title" },
     { text: "Image", value: "image" },
@@ -18,6 +18,7 @@ const headers = [
 
 // Users and search fields
 const items = ref(page.props.universities || []);
+console.log(items.value);
 
 const searchField = ref(["id", "name"]);
 const searchItem = ref();

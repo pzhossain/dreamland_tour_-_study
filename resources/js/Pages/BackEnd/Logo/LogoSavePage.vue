@@ -5,7 +5,7 @@ import LogoSave from '../../../Compenents/BackEnd/Logo/LogoSave.vue';
 
 <template>
 
-    <SideNav>>
+    <SideNav>
         <LogoSave/>
     </SideNav>
 </template>

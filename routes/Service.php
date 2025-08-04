@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/service', [ServiceController::class, 'saveService'])
         ->name('save-service')->middleware('permission:service-save-page');
     Route::post('/service/{id}', [ServiceController::class, 'updateService'])
-        ->name('update-service')->middleware('permission:service-update');
+        ->name('update-service')->middleware('permission:update-service');
     Route::get('/service/{id}', [ServiceController::class, 'deleteService'])
         ->name('delete-service')->middleware('permission:service-delete');
 

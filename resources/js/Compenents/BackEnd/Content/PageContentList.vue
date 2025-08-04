@@ -15,7 +15,6 @@ const headers = [
     { text: "Page Description", value: "description" },
     { text: "Meta Title", value: "meta_title" },
     { text: "Meta Description", value: "meta_description" },
-    { text: "Rank", value: "rank" },
     { text: "Action", value: "action" },
 ];
 

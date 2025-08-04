@@ -1,8 +1,13 @@
-<script setup></script>
+<script setup>
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+
+</script>
 
 <template>
     <!-- Subscribe Start -->
-    <div class="container-fluid subscribe py-5">
+    <!-- <div class="container-fluid subscribe py-5">
         <div class="container text-center py-5">
             <div class="mx-auto text-center" style="max-width: 900px">
                 <h5 class="subscribe-title px-3">Subscribe</h5>
@@ -28,7 +33,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Subscribe End -->
 
     <!-- Footer Start -->
@@ -39,18 +44,18 @@
                     <div class="footer-item d-flex flex-column">
                         <h4 class="mb-4 text-white">Get In Touch</h4>
                         <a href=""
-                            ><i class="fas fa-home me-2"></i> 123 Street, New
-                            York, USA</a
+                            ><i class="fas fa-home me-2"></i>{{ page.props.setting.site_address }}
+                           </a
                         >
                         <a href=""
                             ><i class="fas fa-envelope me-2"></i>
-                            info@example.com</a
+                            {{ page.props.setting.site_email }}</a
                         >
                         <a href=""
-                            ><i class="fas fa-phone me-2"></i> +012 345 67890</a
+                            ><i class="fas fa-phone me-2"></i> {{ page.props.setting.site_phone }}</a
                         >
                         <a href="" class="mb-3"
-                            ><i class="fas fa-print me-2"></i> +012 345 67890</a
+                            ><i class="fas fa-print me-2"></i>{{ page.props.setting.site_fax }}</a
                         >
                         <div class="d-flex align-items-center">
                             <i class="fas fa-share fa-2x text-white me-2"></i>
@@ -80,25 +85,16 @@
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="footer-item d-flex flex-column">
                         <h4 class="mb-4 text-white">Company</h4>
-                        <a href=""
-                            ><i class="fas fa-angle-right me-2"></i> About</a
+
+                        <Link
+                            v-for="page in page.props.pageNameList"
+                            :key="page.id"
+                            :href="`/page-view/${page.slug}`"
+                            class="mb-3"
                         >
-                        <a href=""
-                            ><i class="fas fa-angle-right me-2"></i> Careers</a
-                        >
-                        <a href=""
-                            ><i class="fas fa-angle-right me-2"></i> Blog</a
-                        >
-                        <a href=""
-                            ><i class="fas fa-angle-right me-2"></i> Press</a
-                        >
-                        <a href=""
-                            ><i class="fas fa-angle-right me-2"></i> Gift
-                            Cards</a
-                        >
-                        <a href=""
-                            ><i class="fas fa-angle-right me-2"></i> Magazine</a
-                        >
+                            <i class="fas fa-angle-right me-2"></i>
+                            {{ page.name }}
+                    </Link>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-3">

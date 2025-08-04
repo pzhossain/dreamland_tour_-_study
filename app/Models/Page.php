@@ -12,7 +12,10 @@ class Page extends Model
         'meta_description',
         'description',
         'title',
-        'page_name',
-        'rank',
+        'page_name_id',
     ];
+
+    public function pageName(){
+        return $this->belongsTo(PageName::class);
+    }
 }
