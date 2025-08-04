@@ -89,6 +89,24 @@
               </div>
 
               <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Booking Banner</label>
+                <VerifyEmailBannerImage :verifyEmailBannerImage="form.verify_email_banner_image" @image="e => form.verify_email_banner_image = e" />
+                <div v-if="errors.verify_email_banner_image" class="text-danger">{{ errors.verify_email_banner_image[0] }}</div>
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Booking Banner</label>
+                <VerifyOtpBannerImage :verifyOtpBannerImage="form.verify_otp_banner_image" @image="e => form.verify_otp_banner_image = e" />
+                <div v-if="errors.verify_otp_banner_image" class="text-danger">{{ errors.verify_otp_banner_image[0] }}</div>
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Booking Banner</label>
+                <ResetPasswordBannerImage :resetPasswordBannerImage="form.reset_password_banner_image" @image="e => form.reset_password_banner_image = e" />
+                <div v-if="errors.reset_password_banner_image" class="text-danger">{{ errors.reset_password_banner_image[0] }}</div>
+              </div>
+
+              <div class="col-12 col-md-6 mb-3">
                 <label class="form-label">Site Logo</label>
                 <SiteLogo :siteLogo="form.site_logo" @image="e => form.site_logo = e" />
                 <div v-if="errors.site_logo" class="text-danger">{{ errors.site_logo[0] }}</div>
@@ -151,7 +169,11 @@ import RegisterBannerImage from "./RegisterBannerImage.vue";
 import ServiceBannerImage from "./ServiceBannerImage.vue";
 import ContactBannerImage from "./ContactBannerImage.vue";
 import BookingBannerImage from "./BookingBannerImage.vue";
+import VerifyOtpBannerImage from "./VerifyOtpBannerImage.vue";
+import ResetPasswordBannerImage from "./ResetPasswordBannerImage.vue";
 import SiteLogo from "./SiteLogo.vue";
+
+
 
 const toaster = createToaster();
 const page = usePage();
@@ -186,6 +208,9 @@ const form = useForm({
   service_banner_image: "",
   contact_banner_image: "",
   booking_banner_image: "",
+  verify_otp_banner_image: "",
+  verify_email_banner_image: "",
+  reset_password_banner_image: "",
 });
 
 if (logo_id != 0 && logo != null) {

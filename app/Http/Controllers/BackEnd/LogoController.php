@@ -44,7 +44,7 @@ class LogoController extends Controller
         ]);
 
         $fileFields = [
-            'site_favicon',
+          'site_favicon',
             'site_logo',
             'fb_logo',
             'twitter_logo',
@@ -58,6 +58,9 @@ class LogoController extends Controller
             'service_banner_image',
             'contact_banner_image',
             'booking_banner_image',
+            'verify_email_banner_image',
+            'verify_otp_banner_image',
+            'reset_password_banner_image',
         ];
 
         foreach ($fileFields as $field) {
@@ -112,6 +115,10 @@ class LogoController extends Controller
             'service_banner_image',
             'contact_banner_image',
             'booking_banner_image',
+            'verify_email_banner_image',
+            'verify_otp_banner_image',
+            'reset_password_banner_image',
+
         ];
 
         foreach ($fileFields as $field) {

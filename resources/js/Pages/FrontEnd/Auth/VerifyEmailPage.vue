@@ -27,7 +27,20 @@ const handleLogin = () => {
 </script>
 
 <template>
-    <div class="login-wrapper">
+   <div class="login-wrapper" :style="{
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${
+        page.props.setting?.verify_email_banner_image
+          ? '/storage/logo/' + page.props.setting.verify_email_banner_image
+          : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80'
+      }')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }">
         <div class="login-box">
             <h2>Send Email For OTP</h2>
             <form @submit.prevent="handleLogin">
@@ -55,15 +68,6 @@ const handleLogin = () => {
 </template>
 
 <style scoped>
-.login-wrapper {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
-            no-repeat center center / cover;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .login-box {
     background-color: rgba(255, 255, 255, 0.95);

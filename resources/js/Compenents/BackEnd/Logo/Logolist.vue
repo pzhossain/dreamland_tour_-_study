@@ -33,6 +33,9 @@ const headers = [
   { text: "Service Banner Image", value: "service_banner_image" },
   { text: "Contact Banner Image", value: "contact_banner_image" },
   { text: "Booking Banner Image", value: "booking_banner_image" },
+  { text: "Verify Otp Banner Image", value: "verify_otp_banner_image" },
+  { text: "Verify Email Banner Image", value: "verify_email_banner_image" },
+  { text: "Reset Password Banner Image", value: "reset_password_banner_image" },
   { text: "Action", value: "action" },
 ];
 

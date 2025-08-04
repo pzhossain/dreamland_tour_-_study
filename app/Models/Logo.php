@@ -33,6 +33,9 @@ class Logo extends Model
     'service_banner_image',
     'contact_banner_image',
     'booking_banner_image',
+    'verify_email_banner_image',
+    'verify_otp_banner_image',
+    'reset_password_banner_image',
 ];
 
 }

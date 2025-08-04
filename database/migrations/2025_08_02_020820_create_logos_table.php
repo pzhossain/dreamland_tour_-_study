@@ -38,6 +38,9 @@ return new class extends Migration {
             $table->string('service_banner_image')->nullable();
             $table->string('contact_banner_image')->nullable();
             $table->string('booking_banner_image')->nullable();
+            $table->string('verify_otp_banner_image')->nullable();
+            $table->string('verify_email_banner_image')->nullable();
+            $table->string('reset_password_banner_image')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
