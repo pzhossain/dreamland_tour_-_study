@@ -102,7 +102,7 @@ function extractVideoID(url) {
                   <iframe
                     width="288"
                     height="288"
-                    :src="`https://www.youtube.com/embed/${extractVideoID(story.video_link)}`"
+                    :src="`https://www.youtube.com/embed/${extractVideoID(story.video)}`"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -140,7 +140,7 @@ function extractVideoID(url) {
         </div>
 
         <!-- Second carousel: Right to Left -->
-        <div
+        <!-- <div
           id="cardCarouselRight"
           class="carousel slide rtl-slide"
           data-bs-ride="carousel"
@@ -197,7 +197,7 @@ function extractVideoID(url) {
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

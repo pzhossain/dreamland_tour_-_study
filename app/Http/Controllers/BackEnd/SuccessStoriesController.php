@@ -31,7 +31,7 @@ class SuccessStoriesController extends Controller
     {
 
         $data = [
-            'video_link' => $request->video,
+            'video' => $request->video,
         ];
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -49,7 +49,7 @@ class SuccessStoriesController extends Controller
         $story = SuccessStories::findOrFail($success_id);
 
         $data = [
-            'video_link' => $request->video,
+            'video' => $request->video,
         ];
 
         if ($request->hasFile('image')) {
